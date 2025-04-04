@@ -138,12 +138,10 @@ const ProductDetails = () => {
             if(checkProductPresentInCart.status){
                 console.log('quantity', checkProductPresentInCart);
                 updateProductQuantity(addAndCheckProductInCart, checkProductPresentInCart.productIdToUpdate, "increase");
-                navigate("/cart", {state: {message: "updateQuantity"}});
             }
             else{
                 console.log('new cart', checkProductPresentInCart);
                 addProductToCart(addAndCheckProductInCart);
-                navigate("/cart", {state: {message: "add"}});
             }
         }
 
@@ -168,6 +166,7 @@ const ProductDetails = () => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
+                navigate("/cart", {state: {message: "add"}});
             }
         }
         catch (error) {
@@ -203,6 +202,7 @@ const ProductDetails = () => {
             if(data.data){
                 console.log(data.message);
                 setRefetchCart((prev) => !prev);
+                navigate("/cart", {state: {message: "updateQuantity"}});
             }
         }
         catch (error) {
