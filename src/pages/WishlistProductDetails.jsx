@@ -103,7 +103,6 @@ const WishlistProductDetails = () => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
-                showAlertMessage("Product Added To Cart", "green");
             }
         }
         catch (error) {
