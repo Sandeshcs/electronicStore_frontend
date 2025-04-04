@@ -14,6 +14,7 @@ const ProductCart = () => {
             message === "add" 
             ? showAlertMessage("Product Added To Cart", "green") 
             : showAlertMessage("Product Already In Cart Updated Quantity", "green");
+            setRefetchCart(prev => !prev);
             window.history.replaceState({}, document.title);
         }
     }, [message])
