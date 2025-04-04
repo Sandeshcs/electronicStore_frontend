@@ -137,13 +137,13 @@ const ProductDetails = () => {
         if(addAndCheckProductInCart.length === 24 && checkProductPresentInCart){
             if(checkProductPresentInCart.status){
                 console.log('quantity', checkProductPresentInCart);
-                navigate("/cart", {state: {message: "updateQuantity"}});
                 updateProductQuantity(addAndCheckProductInCart, checkProductPresentInCart.productIdToUpdate, "increase");
+                navigate("/cart", {state: {message: "updateQuantity"}});
             }
             else{
                 console.log('new cart', checkProductPresentInCart);
-                navigate("/cart", {state: {message: "add"}});
                 addProductToCart(addAndCheckProductInCart);
+                navigate("/cart", {state: {message: "add"}});
             }
         }
 
