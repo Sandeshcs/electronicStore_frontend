@@ -10,12 +10,12 @@ const ProductCart = () => {
     const location = useLocation();
     let message = location.state?.message;
 
-    const {data: wishlistData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
-    const wishlistDataFound = wishlistData? wishlistData.data? wishlistData.data : []:[];
-
     const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get?updated=${refetchCartDetails}`);
     const cartProducts = data? data.data || data.error : [];
     //console.log(cartProducts);
+    
+    const {data: wishlistData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
+    const wishlistDataFound = wishlistData? wishlistData.data? wishlistData.data : []:[];
 
     useEffect(() => {
         if(message){
@@ -25,12 +25,6 @@ const ProductCart = () => {
             window.history.replaceState({}, document.title);
         }
     }, [message]);
-
-    useEffect(() => {
-        if(cartProducts.length>0){
-            setRefetchCart(prev => !prev);
-        }
-    }, [cartProducts]);
     
     //function to update product quantity.
     const updateProductQuantity = async (prodid, prodIdToUpdate, updateType) => {

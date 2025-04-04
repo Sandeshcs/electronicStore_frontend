@@ -7,6 +7,7 @@ import { MdFavorite } from "react-icons/md";
 //function to display the products
 const DisplayProducts = ({productData}) => {
     const navigate = useNavigate();
+    const [refetchCartData, setRefetchCartData] = useState(false);
     const [wishlistAlert, setWishlistAlert] = useState({status: null, bgColor: ''});
     const [addOrDeleteWishlistProduct, setAddProductToWishlist] = useState({productsInWishlist: ""});
     const [wishlistUpdated, setWishlistUpdated] = useState(false);
@@ -18,7 +19,7 @@ const DisplayProducts = ({productData}) => {
     const wishlistDataFound = wishlistData? wishlistData.data || wishlistData.error :[];
     //console.log(wishlishDataFound);
 
-    const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get`);
+    const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get?updated=${refetchCartData}`);
     const cartProducts = data? data.data || data.error : [];
     //console.log(data, cartProducts);
 
@@ -161,6 +162,7 @@ const DisplayProducts = ({productData}) => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
+                setRefetchCartData((prev) => !prev);
             }
         }
         catch (error) {
@@ -195,6 +197,7 @@ const DisplayProducts = ({productData}) => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
+                setRefetchCartData((prev) => !prev);
             }
         }
         catch (error) {
