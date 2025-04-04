@@ -137,10 +137,12 @@ const ProductDetails = () => {
         if(addAndCheckProductInCart.length === 24 && checkProductPresentInCart){
             if(checkProductPresentInCart.status){
                 console.log('quantity', checkProductPresentInCart);
+                navigate("/cart", {state: {message: "updateQuantity"}});
                 updateProductQuantity(addAndCheckProductInCart, checkProductPresentInCart.productIdToUpdate, "increase");
             }
             else{
                 console.log('new cart', checkProductPresentInCart);
+                navigate("/cart", {state: {message: "add"}});
                 addProductToCart(addAndCheckProductInCart);
             }
         }
@@ -166,7 +168,6 @@ const ProductDetails = () => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
-                navigate("/cart", {state: {message: "add"}});
             }
         }
         catch (error) {
@@ -202,7 +203,6 @@ const ProductDetails = () => {
             if(data.data){
                 console.log(data.message);
                 setRefetchCart((prev) => !prev);
-                navigate("/cart", {state: {message: "updateQuantity"}});
             }
         }
         catch (error) {

@@ -161,7 +161,6 @@ const DisplayProducts = ({productData}) => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
-                navigate("/cart", {state: {message: "add"}});
             }
         }
         catch (error) {
@@ -196,7 +195,6 @@ const DisplayProducts = ({productData}) => {
             const data = await response.json();
             if(data.data){
                 console.log(data.message);
-                navigate("/cart", {state: {message: "updateQuantity"}});
             }
         }
         catch (error) {
