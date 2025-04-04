@@ -18,10 +18,10 @@ const ProductCart = () => {
         }
     }, [message])
 
-    const {data: wishlistData} = useFetch(`http://localhost:3000/product/wishlist/get`);
+    const {data: wishlistData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
     const wishlistDataFound = wishlistData? wishlistData.data? wishlistData.data : []:[];
 
-    const {data, loading, error} = useFetch(`http://localhost:3000/product/cart/get?updated=${refetchCartDetails}`);
+    const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get?updated=${refetchCartDetails}`);
     const cartProducts = data? data.data || data.error : [];
     //console.log(cartProducts);
     
@@ -37,7 +37,7 @@ const ProductCart = () => {
             return acc;
         }, {quantity: 0});
         try{
-            const response = await fetch(`http://localhost:3000/product/cart/update/${prodIdToUpdate}`, {
+            const response = await fetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/update/${prodIdToUpdate}`, {
                 method: "POST",
                 body: JSON.stringify(updateQuantity),
                 headers: {
@@ -64,7 +64,7 @@ const ProductCart = () => {
     //function to delete product from cart.
     const deleteProductFromCart = async (prodid) => {
         try{
-            const response = await fetch(`http://localhost:3000/product/cart/delete/${prodid}`, {
+            const response = await fetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/delete/${prodid}`, {
                 method: "DELETE",
                 headers: {
                     'content-type': 'application/json'
@@ -114,7 +114,7 @@ const ProductCart = () => {
     //function to add product to wishlist when clicked
     const addProductToWishlist = async () => {
         try{
-            const response = await fetch('http://localhost:3000/product/wishlist/addproduct', {
+            const response = await fetch('https://electronic-store-backend-sepia.vercel.app/product/wishlist/addproduct', {
                 method: "POST",
                 body: JSON.stringify(addOrDeleteWishlistProduct),
                 headers: {

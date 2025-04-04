@@ -26,12 +26,12 @@ const CheckOut = () => {
     });
     //console.log(orderHistoryFormat);
     
-    const {data: wishlistData} = useFetch(`http://localhost:3000/product/wishlist/get`);
+    const {data: wishlistData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
     const wishlistDataFound = wishlistData? wishlistData.data? wishlistData.data : []:[];
 
-    const {data: productData, loading: productLoading, error: productError} = useFetch(`http://localhost:3000/products/all`);
-    const {data: cartData, loading: cartLoading, error: cartError} = useFetch(`http://localhost:3000/product/cart/get?updated=${refetchCartDetails}`);
-    const {data, loading, error} = useFetch(`http://localhost:3000/address/get`);
+    const {data: productData, loading: productLoading, error: productError} = useFetch(`https://electronic-store-backend-sepia.vercel.app/products/all`);
+    const {data: cartData, loading: cartLoading, error: cartError} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get?updated=${refetchCartDetails}`);
+    const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/address/get`);
     const allAddress = data? data.data || data.error : [];
     const cartsData = cartData? cartData.data || cartData.error : [];
     
@@ -109,7 +109,7 @@ const CheckOut = () => {
     //function to add product to wishlist when clicked
     const addProductToWishlist = async () => {
         try{
-            const response = await fetch('http://localhost:3000/product/wishlist/addproduct', {
+            const response = await fetch('https://electronic-store-backend-sepia.vercel.app/product/wishlist/addproduct', {
                 method: "POST",
                 body: JSON.stringify(addOrDeleteWishlistProduct),
                 headers: {
@@ -154,7 +154,7 @@ const CheckOut = () => {
             ...prev, prodQuantity: updateQuantity.quantity
         }));
         try{
-            const response = await fetch(`http://localhost:3000/product/cart/update/${prodIdToUpdate}`, {
+            const response = await fetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/update/${prodIdToUpdate}`, {
                 method: "POST",
                 body: JSON.stringify(updateQuantity),
                 headers: {
@@ -190,7 +190,7 @@ const CheckOut = () => {
           })
         };
         try{
-            const response = await fetch(`http://localhost:3000/orderhistory/add`, {
+            const response = await fetch(`https://electronic-store-backend-sepia.vercel.app/orderhistory/add`, {
                 method: "POST",
                 body: JSON.stringify(dataToAdd),
                 headers: {

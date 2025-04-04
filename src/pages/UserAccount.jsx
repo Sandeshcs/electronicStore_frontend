@@ -21,11 +21,11 @@ const UserAccount = () => {
 
     const [refetchAddress, setRefetchAddress] = useState(false);
     const [checkAllFields, setCheckAllFields] = useState(false);
-    const {data, loading, error} = useFetch(`http://localhost:3000/address/get?updated=${refetchAddress}`);
+    const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/address/get?updated=${refetchAddress}`);
     
     const addressData = data? data.data || data.error : [];
 
-    const {data: orderData, loading: orderLoading, error: orderError} = useFetch(`http://localhost:3000/orderhistory/get`);
+    const {data: orderData, loading: orderLoading, error: orderError} = useFetch(`https://electronic-store-backend-sepia.vercel.app/orderhistory/get`);
     
     const orderHistoryData = orderData? orderData.data || orderData.error : [];
     console.log(orderError, addressData, orderHistoryData);
@@ -67,7 +67,7 @@ const UserAccount = () => {
     //function that adds new address to db.
     const addNewAddressToDb = async (newData) => {
         try{
-            const response = await fetch('http://localhost:3000/address/add', {
+            const response = await fetch('https://electronic-store-backend-sepia.vercel.app/address/add', {
                 method: "POST",
                 body: JSON.stringify(newData),
                 headers: {
@@ -103,7 +103,7 @@ const UserAccount = () => {
     //function to delete address from db.
     const deleteThisAddress = async (addressId) => {
         try{
-            const response = await fetch(`http://localhost:3000/address/delete/${addressId}`, {
+            const response = await fetch(`https://electronic-store-backend-sepia.vercel.app/address/delete/${addressId}`, {
                 method: "DELETE",
             });
 
@@ -147,7 +147,7 @@ const UserAccount = () => {
     //function updates address to db.
     const updateAddressToDb = async (addressId) => {
         try{
-            const response = await fetch(`http://localhost:3000/address/update/${addressId}`, {
+            const response = await fetch(`https://electronic-store-backend-sepia.vercel.app/address/update/${addressId}`, {
                 method: "POST",
                 body: JSON.stringify(updateAddressFormat),
                 headers: {
