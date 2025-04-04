@@ -22,10 +22,15 @@ const ProductCart = () => {
             message === "add" 
             ? showAlertMessage("Product Added To Cart", "green") 
             : showAlertMessage("Product Already In Cart Updated Quantity", "green");
-            setRefetchCart(prev => !prev);
             window.history.replaceState({}, document.title);
         }
-    }, [message])
+    }, [message]);
+
+    useEffect(() => {
+        if(cartProducts.length>0){
+            setRefetchCart(prev => !prev);
+        }
+    }, [cartProducts]);
     
     //function to update product quantity.
     const updateProductQuantity = async (prodid, prodIdToUpdate, updateType) => {
