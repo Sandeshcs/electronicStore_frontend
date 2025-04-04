@@ -9,20 +9,6 @@ const ProductCart = () => {
     const [addOrDeleteWishlistProduct, setAddProductToWishlist] = useState({productsInWishlist: ""});
     const location = useLocation();
     let message = location.state?.message;
-    useEffect(() => {
-        if(message){
-            message === "add" 
-            ? showAlertMessage("Product Added To Cart", "green") 
-            : showAlertMessage("Product Already In Cart Updated Quantity", "green");
-            window.history.replaceState({}, document.title);
-        }
-    }, [message])
-
-    useEffect(() => {
-        if(cartProducts.length > 0){
-            setRefetchCart(prev => !prev);
-        }
-    }, [cartProducts]);
 
     const {data: wishlistData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
     const wishlistDataFound = wishlistData? wishlistData.data? wishlistData.data : []:[];
@@ -30,6 +16,16 @@ const ProductCart = () => {
     const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get?updated=${refetchCartDetails}`);
     const cartProducts = data? data.data || data.error : [];
     //console.log(cartProducts);
+
+    useEffect(() => {
+        if(message){
+            message === "add" 
+            ? showAlertMessage("Product Added To Cart", "green") 
+            : showAlertMessage("Product Already In Cart Updated Quantity", "green");
+            setRefetchCart(prev => !prev);
+            window.history.replaceState({}, document.title);
+        }
+    }, [message])
     
     //function to update product quantity.
     const updateProductQuantity = async (prodid, prodIdToUpdate, updateType) => {
