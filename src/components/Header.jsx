@@ -7,10 +7,10 @@ const Header = () => {
     //const [showProduct, setShowProduct] = useState(false);
     const [showSearchPanel, setShowSearchPanel] = useState(false);
     const [searchProduct, setSearchProduct] = useState([]);
-    const {data: allProductData} = useFetch(`http://localhost:3000/products/all`);
+    const {data: allProductData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/products/all`);
 
-    const {data} = useFetch(`http://localhost:3000/product/wishlist/get`);
-    const {data: cartData} = useFetch(`http://localhost:3000/product/cart/get`);
+    const {data} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
+    const {data: cartData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/cart/get`);
     const cartDataLength = cartData? cartData.data && cartData.data.length : 0;
     
     const allProducts = allProductData? allProductData.data : [];
