@@ -14,10 +14,15 @@ const ProductCart = () => {
             message === "add" 
             ? showAlertMessage("Product Added To Cart", "green") 
             : showAlertMessage("Product Already In Cart Updated Quantity", "green");
-            setRefetchCart(prev => !prev);
             window.history.replaceState({}, document.title);
         }
     }, [message])
+
+    useEffect(() => {
+        if(cartProducts.length > 0){
+            setRefetchCart(prev => !prev);
+        }
+    }, [cartProducts]);
 
     const {data: wishlistData} = useFetch(`https://electronic-store-backend-sepia.vercel.app/product/wishlist/get`);
     const wishlistDataFound = wishlistData? wishlistData.data? wishlistData.data : []:[];
