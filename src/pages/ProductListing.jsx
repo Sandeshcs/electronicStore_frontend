@@ -269,7 +269,7 @@ const ProductListing = () => {
     const [showFilterData, setFilterData] = useState(false);
     const [showAllData, setAllData] = useState(true);
     const {productCategory} = useParams();
-    const {data, loading, error} = useFetch(`http://localhost:3000/products/category/${productCategory}`);
+    const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/products/category/${productCategory}`);
     const productsData = data? data.data || data.error : [];
 
     //  Function to update the filters and apply them
