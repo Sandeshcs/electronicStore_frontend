@@ -28,7 +28,7 @@ const UserAccount = () => {
     const {data: orderData, loading: orderLoading, error: orderError} = useFetch(`https://electronic-store-backend-sepia.vercel.app/orderhistory/get`);
     
     const orderHistoryData = orderData? orderData.data || orderData.error : [];
-    console.log(orderError, addressData, orderHistoryData);
+    //console.log(orderError, addressData, orderHistoryData);
 
     //function of add new address for updating state each time user enter.
     const handleOnClick = (e) => {

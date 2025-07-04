@@ -3,10 +3,11 @@ import useFetch from "../useFetch";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import { MdFavorite } from "react-icons/md";
+import { useElectronicStoreContext } from "../contexts/ElectronicStoreContext";
 
 //function to display the products
 const DisplayProducts = ({productData}) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const [refetchCartData, setRefetchCartData] = useState(false);
     const [wishlistAlert, setWishlistAlert] = useState({status: null, bgColor: ''});
     const [addOrDeleteWishlistProduct, setAddProductToWishlist] = useState({productsInWishlist: ""});
@@ -273,6 +274,8 @@ const ProductListing = () => {
     const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/products/category/${productCategory}`);
     const productsData = data? data.data || data.error : [];
 
+    const {a} = useElectronicStoreContext();
+    console.log(a);
     //  Function to update the filters and apply them
     const applyFilters = () => {
         let updatedData = data?.data || [];

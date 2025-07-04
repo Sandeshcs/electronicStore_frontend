@@ -1,70 +1,286 @@
-# Getting Started with Create React App
+# ELECTRONIC STORE APP
+An e-commerece app to buy products of category mobile and tablets and user can search for any product and has option to add or remove product to or from wishlist and cart and filter by processor and sort by price, ratings and increase or decrease product quantity, and add-update-delete address, and save orders placed in checkout page.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## App Live Demo Link
+[App Live Demo](https://electronic-store-frontend-six.vercel.app/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Qucik Start
+```
+git clone https://github.com/Sandeshcs/electronicStore_frontend.git
+cd electronicStore_frontend
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies
+- React.js
+- React Router
+- Node.js
+- Express.js
+- MongoDB
+- Bootstrap
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## App Demo Video
+Watch a walkthrough (13 min) of all the major features of this app: [App Demo Video](https://drive.google.com/file/d/1LSGHss_iH8cP3lAYDaOLKBtsnUhMmy5l/view?usp=sharing)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
+### Navbar (included in all pages)
+- Search bar to search for products.
+- Wishlist button to see products in wishlist with bage showing number of wishlist products.
+- Cart button to see products in cart with bage showing number of cart products.
+- User profile includes user info, address, order history.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Home page
+- Categories mobile and tablet.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Product lisiting page
+- Display of all products (product - image, name, price).
+- Add or remove product to or from cart or wishlist.
+- Buy now button will take directly to checkout page.
+- Filter by processor, clear filter.
+- Sort by ratings, price (low to high, high to low).
+- Price range slider.
+- Clicking on image will take you to product details page.
 
-### `npm run eject`
+### Product details page
+- Display of product image, name, price, quantity, description (specification) of product.
+- Increase and decrease of product quantity with alert message.
+- Recommending products of same category.
+- Wishlist, add to cart, buy now buttton.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Wishlist page
+- Display of products in wishlist (product - image, name, price).
+- Wishlist, add to cart, buy now buttton.
+- Clicking on image will take you to product details page.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Cart page
+- Display of products in cart (product - image, name, price).
+- Increase or decrease quantity.
+- Add to Wishlist, remove from cart.
+- Clicking on image will take you to product details page.
+- Price details will change dynamicaly when we perform remove from cart/ increase or decrease quantity operation.
+- Place order button will take to checkout.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Checkout page
+- User info details.
+- Option to select address to deliver the product.
+- Order summary shows products from cart or if u have clicked buy now than that only product is shown.
+- Display of products info (product - image, name, price).
+- Increase or decrease quantity.
+- Add to Wishlist.
+- Clicking on image will take you to product details page.
+- Payment options (upi, cash on delivery).
+- Price details.
+- Confirm order will place order shows **`order placed successfully`** message.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### User profile information
+- profile info (name, gender, email-id, phNo).
+- Manage address - add, update, delete address.
+- Order history (login, address, ordered products, payment, date and time details)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API References
+### Products API's
+#### POST /api/product/add
+This api Add's new product.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Sample Response:
+```
+{category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### GET /api/products/all
+Display all products.
 
-### Analyzing the Bundle Size
+Sample Response:
+```
+[{category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}, ...]
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### GET /api/products/id/:productId
+Display one product.
 
-### Making a Progressive Web App
+Sample Response:
+```
+{category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### GET /api/products/category
+Display products of specific category(mobile , tablet).
 
-### Advanced Configuration
+Sample Response:
+```
+[{category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}]
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### POST /api/product/update/:productId
+Updates specific product.
 
-### Deployment
+Sample Response:
+```
+{category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### DELETE /api/product/delete/:productId
+Delete specific product.
 
-### `npm run build` fails to minify
+Sample Response:
+```
+{category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Wishlist API's
+#### POST /api/product/wishlist/addproduct
+This api Add's new product to wishlist.
+
+Sample Response:
+```
+{productsInWishlist(containes object id of that product)}
+```
+
+---
+
+#### GET /api/product/wishlist/get
+Display all products in wishlist.
+
+Sample Response:
+```
+[{productsInWishlist: {category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}}, ...]
+```
+
+#### POST /api/product/wishlist/update/:productId
+Updates specific product in wishlist.
+
+Sample Response:
+```
+{productsInWishlist: {category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}}
+```
+
+#### DELETE /api/product/wishlist/delete/:productId
+Delete specific product in wishlist.
+
+Sample Response:
+```
+{productsInWishlist: {category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}}
+```
+
+### Cart API's
+#### POST /api/product/cart/add
+This api Add's new product to cart.
+
+Sample Response:
+```
+{productInCart(containes object id of that product), quantity}
+```
+
+---
+
+#### GET /api/product/cart/get
+Display all products in cart.
+
+Sample Response:
+```
+[{productInCart: {category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}, quantity}, ...]
+```
+
+#### POST /api/product/cart/update/:productId
+Updates specific product in cart.
+
+Sample Response:
+```
+{productsInWishlist: {category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}, quantity}
+```
+
+#### DELETE /api/product/cart/delete/:productId
+Delete specific product in cart.
+
+Sample Response:
+```
+{productsInWishlist: {category, title, rating, price, ram, rom, freeDelivery, returnTime, details(specs), prouductImage, quantity}, quantity}
+```
+
+### Address API's
+#### POST /api/address/add
+This api Add's new address.
+
+Sample Response:
+```
+{fullName, phNo, pincode, locality, address, cityDistrictTown, state, landmark, alterantePhNo, selected}
+```
+
+---
+
+#### GET /api/address/get
+Display all address.
+
+Sample Response:
+```
+[{fullName, phNo, pincode, locality, address, cityDistrictTown, state, landmark, alterantePhNo, selected}, ...]
+```
+
+#### POST /api/address/update/:updateId
+Updates specific address details.
+
+Sample Response:
+```
+{fullName, phNo, pincode, locality, address, cityDistrictTown, state, landmark, alterantePhNo, selected}
+```
+
+#### DELETE /api/address/delete/:deleteId
+Delete specific address details.
+
+Sample Response:
+```
+{fullName, phNo, pincode, locality, address, cityDistrictTown, state, landmark, alterantePhNo, selected}
+```
+
+### Orderhistory API's
+#### POST /api/orderhistory/add
+This api Add's new orderhistory.
+
+Sample Response:
+```
+{ordersFrom, loginDetails, addressDetails, prodQuantity, orderedProductsFromCart, orderedProductsFromBuyNow, totalAmountPayable, paymentMode, dateTimeOfOrder}
+```
+
+---
+
+#### GET /api/orderhistory/get
+Display all order history.
+
+Sample Response:
+```
+[{ordersFrom, loginDetails, addressDetails, prodQuantity, orderedProductsFromCart, orderedProductsFromBuyNow, totalAmountPayable, paymentMode, dateTimeOfOrder}, ...]
+```
+
+#### POST /api/orderhistory/update/:orderId
+Updates specific ordered history details.
+
+Sample Response:
+```
+{ordersFrom, loginDetails, addressDetails, prodQuantity, orderedProductsFromCart, orderedProductsFromBuyNow, totalAmountPayable, paymentMode, dateTimeOfOrder}
+```
+
+#### DELETE /api/orderhistory/delete/:orderedId
+Delete specific order history details.
+
+Sample Response:
+```
+{ordersFrom, loginDetails, addressDetails, prodQuantity, orderedProductsFromCart, orderedProductsFromBuyNow, totalAmountPayable, paymentMode, dateTimeOfOrder}
+```
+
+## Contact 
+For bugs or feature request please reach out to sandeshcs2921@gmail.com.

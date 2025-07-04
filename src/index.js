@@ -10,23 +10,26 @@ import WishlistProductDetails from './pages/WishlistProductDetails';
 import ProductCart from './pages/ProductCart';
 import UserAccount from './pages/UserAccount';
 import CheckOut from './pages/CheckOut';
+import { ElectronicStoreContextProvider } from './contexts/ElectronicStoreContext';
 
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path='productListing/:productCategory' element={<ProductListing/>}/>
-        <Route path='productDetails/:productId' element={<ProductDetails/>}/>
-        <Route path='store/wishlist' element={<WishlistProductDetails/>}/>
-        <Route path='cart' element={<ProductCart/>}/>
-        <Route path='userProfile' element={<UserAccount/>}/>
-        <Route path='checkOut/:orderFrom/:productId' element={<CheckOut/>}/>
-      </Routes>
-    </BrowserRouter>
+    <ElectronicStoreContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App/>}/>
+          <Route path='productListing/:productCategory' element={<ProductListing/>}/>
+          <Route path='productDetails/:productId' element={<ProductDetails/>}/>
+          <Route path='store/wishlist' element={<WishlistProductDetails/>}/>
+          <Route path='cart' element={<ProductCart/>}/>
+          <Route path='userProfile' element={<UserAccount/>}/>
+          <Route path='checkOut/:orderFrom/:productId' element={<CheckOut/>}/>
+        </Routes>
+      </BrowserRouter>
+    </ElectronicStoreContextProvider>
   </React.StrictMode>
 );
 

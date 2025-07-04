@@ -203,6 +203,7 @@ const ProductDetails = () => {
             if(data.data){
                 console.log(data.message);
                 setRefetchCart((prev) => !prev);
+                updateType === "increase"? showAlertMessage("Product Quantity Increased", "green") : showAlertMessage("Product Quantity Decreased", "green");
             }
         }
         catch (error) {
