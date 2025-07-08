@@ -274,9 +274,10 @@ const ProductListing = () => {
     const {data, loading, error} = useFetch(`https://electronic-store-backend-sepia.vercel.app/products/category/${productCategory}`);
     const productsData = data? data.data || data.error : [];
 
-    const {a} = useElectronicStoreContext();
-    console.log(a);
-    //  Function to update the filters and apply them
+    //const {a} = useElectronicStoreContext();
+    //console.log(a);
+    
+    //Function to update the filters and apply them
     const applyFilters = () => {
         let updatedData = data?.data || [];
 
